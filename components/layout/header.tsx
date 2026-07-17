@@ -90,11 +90,12 @@ export function Header() {
         </nav>
 
         <div className="flex items-center justify-self-end gap-2">
-          <button
+        <button
             onClick={toggleTheme}
+            className="flex lg:hidden h-10 w-10 items-center justify-center rounded-lg border border-border text-muted transition-all hover:border-primary/30 hover:text-primary"
+        
             aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted transition-all hover:border-primary/30 hover:text-primary"
-            data-cursor-hover
+            className="hidden lg:flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted transition-all hover:border-primary/30 hover:text-primary"
           >
             {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
           </button>
