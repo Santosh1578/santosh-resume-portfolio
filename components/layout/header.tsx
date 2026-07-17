@@ -82,23 +82,23 @@ export function Header() {
                     layoutId="activeNav"
                     className="absolute inset-x-1 -bottom-px h-px bg-primary"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
+                        />
+                      )}
+                    </button>
+                  );
+                })}
+              <button
+                onClick={toggleTheme}
+                aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+                className="hidden lg:flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted transition-all hover:border-primary/30 hover:text-primary"
+                data-cursor-hover
+              >
+                {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
               </button>
-            );
-          })}
+
         </nav>
 
         <div className="flex items-center justify-self-end gap-2">
-        <button
-            onClick={toggleTheme}
-            className="flex lg:hidden h-10 w-10 items-center justify-center rounded-lg border border-border text-muted transition-all hover:border-primary/30 hover:text-primary"
-        
-            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-            className="hidden lg:flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted transition-all hover:border-primary/30 hover:text-primary"
-          >
-            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
 
           <button
             onClick={() => setIsOpen(!isOpen)}
