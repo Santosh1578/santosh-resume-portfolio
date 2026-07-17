@@ -1,4 +1,4 @@
-export const SITE_URL = "https://www.santoshgangwar.in";
+export const SITE_URL = "https://santosh-resume-portfolio.vercel.app";
 
 export const SECTION_IDS = {
   hero: "home",
