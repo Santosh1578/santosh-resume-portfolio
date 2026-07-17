@@ -62,7 +62,7 @@ export function Header() {
       className="hidden items-center justify-self-center gap-8 lg:flex"
       aria-label="Main navigation"
     >
-         <div className="flex items-center gap-8">
+         <div className="ml-auto flex items-center gap-2">
   {navigation.map((item) => {
     const sectionId = item.href.replace("#", "");
     const isActive = activeSection === sectionId;
