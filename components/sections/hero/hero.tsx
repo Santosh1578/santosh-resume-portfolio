@@ -42,7 +42,6 @@ export function Hero() {
     <section
       id={SECTION_IDS.hero}
       ref={containerRef}
-     className="relative flex min-h-[80vh] md:min-h-screen items-center overflow-hidden pt-16 md:pt-36"
       aria-label="Hero"
     >
       <Container>
