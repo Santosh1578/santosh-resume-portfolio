@@ -7,10 +7,9 @@ import { SECTION_IDS } from "@/lib/constants";
 import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/ui/container";
 import { FadeIn } from "@/components/animations/fade-in";
-import { ArrowDown, Mail, Download } from "lucide-react";
+import { ArrowDown,  Download } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { SiLeetcode } from "react-icons/si";
 import gsap from "gsap";
@@ -104,7 +103,7 @@ export function Hero() {
   className="h-12 w-full rounded-xl px-8 sm:w-auto"
 >
       <Download size={18} />
-      Download CV
+      Download resume 
     </Button>
   </a>
 
@@ -167,13 +166,13 @@ export function Hero() {
   </div>
 
 </div>
+<div className="hero-scroll absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted animate-pulse">
+  <span className="text-xs uppercase tracking-[0.3em]">
+    Scroll to Explore
+  </span>
 
-       <FadeIn delay={1.5} className="hero-scroll">
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted">
-          <span className=" text-xs uppercase tracking-widest md:block">Scroll to Explore</span>
-            <ArrowDown size={16} className="animate-bounce" />
-          </div>
-        </FadeIn>
+  <ArrowDown size={18} className="animate-bounce" />
+</div>
       </Container>
 
       <div
