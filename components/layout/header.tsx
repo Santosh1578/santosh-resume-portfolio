@@ -104,16 +104,15 @@ export function Header() {
         </nav>
 
         <div className="flex items-center justify-self-end gap-2">
-
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isOpen}
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted transition-all hover:border-primary/30 hover:text-primary lg:hidden"
-            data-cursor-hover
-          >
-            {isOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+        <button
+                onClick={() => setIsOpen(!isOpen)}
+                aria-label={isOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isOpen}
+                className="ml-1 flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted transition-all hover:border-primary/30 hover:text-primary lg:hidden"
+                data-cursor-hover
+      >
+               {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+         </button>
         </div>
       </div>
 
