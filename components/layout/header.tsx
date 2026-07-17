@@ -166,11 +166,11 @@ export function Header() {
                 )}
               >
                 <span className="mr-3 text-xl">
-                  {item.label === "Home" && "🏠"}
-                  {item.label === "About" && "👤"}
-                  {item.label === "Skills" && "💻"}
-                  {item.label === "Resume" && "📄"}
-                  {item.label === "Contact" && "📧"}
+                  {item.label === "Home"}
+                  {item.label === "About" }
+                  {item.label === "Skills"}
+                  {item.label === "Resume" }
+                  {item.label === "Contact" }
                 </span>
 
                 {item.label}

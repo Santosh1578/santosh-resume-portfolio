@@ -14,7 +14,7 @@ export function Container({
   return (
     <div
       className={cn(
-      "mx-auto w-full max-w-full overflow-x-hidden px-4 sm:px-6 lg:px-8",
+      "mx-auto w-full max-w-full overflow-x-hidden px-6 sm:px-10 lg:px-16 xl:px-20 2xl:px-24",
        {
         "max-w-[1600px]": size === "default",
         "max-w-5xl": size === "narrow",
