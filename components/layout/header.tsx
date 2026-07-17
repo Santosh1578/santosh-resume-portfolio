@@ -59,42 +59,47 @@ export function Header() {
      </div>
 
      <nav
-          className="hidden justify-self-center items-center gap-8 lg:flex" aria-label="Main navigation">
-          {navigation.map((item) => {
-            const sectionId = item.href.replace("#", "");
-            const isActive = activeSection === sectionId;
+      className="hidden items-center justify-self-center gap-8 lg:flex"
+      aria-label="Main navigation"
+    >
+         <div className="flex items-center gap-8">
+  {navigation.map((item) => {
+    const sectionId = item.href.replace("#", "");
+    const isActive = activeSection === sectionId;
 
-            return (
-              <button
-                key={item.href}
-                onClick={() => handleNavClick(item.href)}
-                className={cn(
-                  "relative px-3 py-2 text-sm font-medium transition-colors duration-200",
-                  isActive
-                    ? "text-primary"
-                    : "text-muted hover:text-foreground"
-                )}
-                data-cursor-hover
-              >
-                {item.label}
-                {isActive && (
-                  <motion.span
-                    layoutId="activeNav"
-                    className="absolute inset-x-1 -bottom-px h-px bg-primary"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                        />
-                      )}
-                    </button>
-                  );
-                })}
-              <button
-                onClick={toggleTheme}
-                aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-                className="hidden lg:flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted transition-all hover:border-primary/30 hover:text-primary"
-                data-cursor-hover
-              >
-                {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-              </button>
+    return (
+      <button
+        key={item.href}
+        onClick={() => handleNavClick(item.href)}
+        className={cn(
+          "relative px-3 py-2 text-sm font-medium transition-colors duration-200",
+          isActive
+            ? "text-primary"
+            : "text-muted hover:text-foreground"
+        )}
+        data-cursor-hover
+      >
+        {item.label}
+        {isActive && (
+          <motion.span
+            layoutId="activeNav"
+            className="absolute inset-x-1 -bottom-px h-px bg-primary"
+            transition={{ type: "spring", stiffness: 380, damping: 30 }}
+          />
+        )}
+      </button>
+    );
+  })}
+
+  <button
+    onClick={toggleTheme}
+    aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+    className="flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted transition-all hover:border-primary/30 hover:text-primary"
+    data-cursor-hover
+  >
+    {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+  </button>
+</div>
 
         </nav>
 
