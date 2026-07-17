@@ -42,12 +42,12 @@ export function Hero() {
     <section
       id={SECTION_IDS.hero}
       ref={containerRef}
-      className="relative flex min-h-screen items-center overflow-hidden pt-32"
+      className="relative flex min-h-screen items-center overflow-hidden pt-20 md:pt-24"
       aria-label="Hero"
     >
       <Container>
-      <div className="mx-auto grid max-w-7xl items-center gap-20 lg:grid-cols-[1.2fr_0.8fr]">
-      <div className="flex flex-col items-center justify-center gap-5 text-center lg:items-start lg:text-left lg:max-w-xl">
+      <div className="mx-auto flex max-w-4xl flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center gap-5 text-center">
 
       <div className="hero-badge mb-8">
         
@@ -97,8 +97,8 @@ export function Hero() {
          
 
   <a href={profile.resumeUrl} download data-cursor-hover>
-  <Button
-  variant="outline"
+ <Button
+  variant="default"
   size="lg"
   className="h-12 w-full rounded-xl px-8 sm:w-auto"
 >
@@ -144,26 +144,6 @@ export function Hero() {
 </div>
 
 </div>
-<div className="hidden lg:flex items-center justify-center">
-
-  <div className="relative">
-
-    <div
-    className="absolute inset-0 rounded-full bg-primary/20 blur-3xl">
-    </div>
-
-    <div className="relative flex h-[380px] w-[380px] items-center justify-center rounded-full border border-border bg-surface shadow-2xl">
-
-    <div className="flex h-36 w-36 items-center justify-center rounded-full bg-primary text-5xl font-bold text-white">
-      SG
-    </div>
-
-    </div>
-
-  
-  </div>
-
-  </div>
 
 </div>
 <div className="hero-scroll absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted animate-pulse">
