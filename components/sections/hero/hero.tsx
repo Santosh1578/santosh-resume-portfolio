@@ -40,10 +40,11 @@ export function Hero() {
 
   return (
     <section
-      id={SECTION_IDS.hero}
-      ref={containerRef}
-      aria-label="Hero"
-    >
+    id={SECTION_IDS.hero}
+    ref={containerRef}
+    aria-label="Hero"
+    className="relative min-h-screen"
+  >
       <Container>
       <div className="mx-auto flex min-h-[calc(100vh-80px)] max-w-4xl flex-col items-center justify-center">
       <div className="flex flex-col items-center justify-center gap-5 text-center">

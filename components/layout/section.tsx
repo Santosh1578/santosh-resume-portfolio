@@ -20,7 +20,7 @@ export function Section({
     <section
       id={id}
       aria-label={ariaLabel}
-      className={cn("py-20 md:py-28 lg:py-32", className)}
+      className={cn("py-24 md:py-32 lg:py-36", className)}
     >
       <Container size={containerSize}>{children}</Container>
     </section>
