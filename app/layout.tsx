@@ -7,7 +7,12 @@ import { Providers } from "@/components/layout/providers";
 import { SkipLink } from "@/components/layout/skip-link";
 import "./globals.css";
 
-export const metadata: Metadata = createMetadata();
+export const metadata: Metadata = {
+  ...createMetadata(),
+  verification: {
+    google: "LwdEZOl_o9u2NVXJjHOb_TsLqAJ921IOVBQ9usTxRpE",
+  },
+};
 
 export const viewport: Viewport = {
   themeColor: [
