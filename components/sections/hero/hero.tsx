@@ -42,7 +42,7 @@ export function Hero() {
     <section
       id={SECTION_IDS.hero}
       ref={containerRef}
-     className="relative flex min-h-[85vh] md:min-h-screen items-center overflow-hidden pt-20 md:pt-36"
+     className="relative flex min-h-[80vh] md:min-h-screen items-center overflow-hidden pt-16 md:pt-36"
       aria-label="Hero"
     >
       <Container>
@@ -141,7 +141,7 @@ export function Hero() {
 </div>
 </div>
 </div>
-<div className="hero-scroll absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted animate-pulse">
+<div className="hero-scroll absolute bottom-8 left-1/2 hidden md:flex -translate-x-1/2 flex flex-col items-center gap-2 text-muted animate-pulse">
   <span className="text-xs uppercase tracking-[0.3em]">
     Scroll to Explore
   </span>
