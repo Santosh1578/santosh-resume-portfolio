@@ -28,5 +28,5 @@ export const profile: Profile = {
   
   graduationYear: 2028,
 
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "/Resume.pdf",
 };
