@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { profile } from "@/data/profile";
-import { socialLinks } from "@/data/social";
 import { SECTION_IDS } from "@/lib/constants";
 import { Section } from "@/components/layout/section";
 import { SectionHeader } from "@/components/layout/section-header";
@@ -15,103 +14,161 @@ import { Mail, MapPin, Send, CheckCircle } from "lucide-react";
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const name = formData.get("name") as string;
-    const email = formData.get("email") as string;
-    const message = formData.get("message") as string;
 
-    const mailtoLink = `mailto:${profile.email}?subject=Portfolio Contact from ${encodeURIComponent(name)}&body=${encodeURIComponent(`From: ${name} (${email})\n\n${message}`)}`;
-    window.location.href = mailtoLink;
-    setSubmitted(true);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const message = formData.get("message");
+
+    setLoading(true);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitted(true);
+        form.reset();
+      } else {
+        alert("Failed to send message.");
+      }
+
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong.");
+    } finally {
+      setLoading(false);
+    }
   };
 
+
   return (
-      <Section
-        id={SECTION_IDS.contact}
-        ariaLabel="Contact"
-        className="pb-24"
-      >
+    <Section
+      id={SECTION_IDS.contact}
+      ariaLabel="Contact"
+      className="pb-24"
+    >
+
       <SectionHeader
         label="Contact"
-       title="Get In Touch"
+        title="Get In Touch"
         description="I'm always open to internship opportunities, collaborations, and exciting projects. Feel free to reach out."
-        
       />
 
+
       <div className="mx-auto max-w-7xl">
-      <div className="grid items-start gap-8 lg:gap-12 grid-cols-1 lg:grid-cols-[870px_500px]">
-        <ScrollReveal>
+
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_450px]">
+
+          <ScrollReveal>
             <div className="space-y-6">
-            <div>
-               <h3 className="mb-5 font-display text-2xl font-bold text-foreground">
-               Let's Connect
-               </h3>
+
+              <div>
+                <h3 className="mb-5 font-display text-2xl font-bold">
+                  Let's Connect
+                </h3>
 
                 <Text variant="muted">
-                
-                I'm always happy to connect with recruiters, developers,
-                and anyone interested in collaborating on exciting projects.
+                  I'm always happy to connect with recruiters,
+                  developers, and anyone interested in collaborating
+                  on exciting projects.
                 </Text>
               </div>
 
+
               <div className="space-y-4">
+
                 <a
                   href={`mailto:${profile.email}`}
-                  className="flex items-center gap-3 text-muted hover:text-primary transition-colors"
-                  data-cursor-hover
+                  className="flex items-center gap-3"
                 >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-border">
-                    <Mail size={18} />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg border">
+                    <Mail size={18}/>
                   </div>
+
                   <div>
-                    <p className="text-xs text-muted">Email</p>
-                    <p className="text-sm font-medium text-foreground break-words">
+                    <p className="text-xs text-muted">
+                      Email
+                    </p>
+
+                    <p className="text-sm font-medium">
                       {profile.email}
                     </p>
-                    
                   </div>
+
                 </a>
 
-                <div className="flex items-center gap-3 text-muted">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-border">
-                    <MapPin size={18} />
+
+                <div className="flex items-center gap-3">
+
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg border">
+                    <MapPin size={18}/>
                   </div>
+
                   <div>
-                    <p className="text-xs text-muted">Location</p>
-                    <p className="text-sm font-medium text-foreground">
+                    <p className="text-xs text-muted">
+                      Location
+                    </p>
+
+                    <p className="text-sm font-medium">
                       {profile.location}
                     </p>
                   </div>
+
                 </div>
+
               </div>
 
+
               <SocialLinks hideEmail />
+
             </div>
+
           </ScrollReveal>
 
-          <ScrollReveal
-          delay={0.2}
-         className="mt-8 w-full lg:mt-0 lg:justify-self-end"
->
-<Card
-  className="w-full max-w-[450px] mx-auto lg:mx-0 border border-border/70 rounded-2xl transition-all duration-300 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10"
->
+
+
+          <ScrollReveal>
+
+            <Card className="rounded-2xl border p-5">
+
               {submitted ? (
-                <div className="flex flex-col items-center justify-center py-12 text-center">
-                  <CheckCircle size={48} className="text-primary mb-4" />
-                  <h3 className="font-display text-lg font-semibold text-foreground mb-2">
-                    Message ready to send
+
+                <div className="flex flex-col items-center py-12 text-center">
+
+                  <CheckCircle
+                    size={48}
+                    className="mb-4 text-primary"
+                  />
+
+                  <h3 className="text-xl font-semibold">
+                    Message Sent Successfully
                   </h3>
-                  <Text
-                variant="muted"
-                className="max-w-md leading-8"
->
-                    Your email client should open shortly. If not, email me
-                    directly at {profile.email}
+
+                  <Text variant="muted">
+                    Thanks for contacting me. I will get back to you soon.
                   </Text>
+
+
                   <Button
                     variant="ghost"
                     className="mt-4"
@@ -119,79 +176,75 @@ export function Contact() {
                   >
                     Send another message
                   </Button>
+
+
                 </div>
+
+
               ) : (
+
+
                 <form
                   onSubmit={handleSubmit}
-                  className="space-y-4 p-4 sm:p-5"
-              >
-                  <div className="min-w-0">
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-medium text-foreground mb-2"
-                    >
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                      className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"
-                      placeholder="Enter your full name"
-                    />
-                  </div>
+                  className="space-y-4"
+                >
 
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-foreground mb-2"
-                    >
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"
-                     placeholder="Enter your email address"
-                    />
-                  </div>
+                  <input
+                    name="name"
+                    required
+                    placeholder="Enter your full name"
+                    className="w-full rounded-lg border px-4 py-3"
+                  />
 
-                  <div>
-                    <label
-                      htmlFor="message"
-                      className="block text-sm font-medium text-foreground mb-2"
-                    >
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      required
-                      rows={4}
-                      className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors resize-none"
-                      placeholder="Tell me about your project, opportunity, or message..."
-                    />
-                  </div>
 
-                   <Button
-                      type="submit"
-                      size="lg"
-                      className="mt-4 h-12 w-full rounded-xl transition-all duration-300 hover:scale-[1.02]"
+                  <input
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="Enter your email address"
+                    className="w-full rounded-lg border px-4 py-3"
+                  />
 
-                    >
-                    <Send size={16} />
-                    Send Message
+
+                  <textarea
+                    name="message"
+                    required
+                    rows={5}
+                    placeholder="Tell me about your project..."
+                    className="w-full rounded-lg border px-4 py-3"
+                  />
+
+
+                  <Button
+                    type="submit"
+                    disabled={loading}
+                    className="h-12 w-full"
+                  >
+
+                    <Send size={16}/>
+
+                    {loading
+                      ? "Sending..."
+                      : "Send Message"}
+
                   </Button>
+
+
                 </form>
+
               )}
+
             </Card>
+
+
           </ScrollReveal>
+
+
         </div>
+
       </div>
-      <div className="h-3"></div>
+
+
     </Section>
   );
 }
